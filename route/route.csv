@@ -1,4 +1,4 @@
-Longitude,Latitude,Elevation,CumDistance,Gradient,Maxspeed,Surface
+longitude,latitude,altitude,cumDistance,gradient,maxSpeed,surface
 130.841366,-12.45519,16.25,0,,50,asphalt
 130.841642,-12.455285,16,31.77482926,-0.007867863,50,asphalt
 130.843195,-12.456803,20,270.363256,0.016765273,50,asphalt
