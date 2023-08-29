@@ -10,7 +10,7 @@ disp('Choose the .geojson route file')
 if isequal(file_name, 0) || isequal(path_name, 0)
     disp('No file selected.');
 elseif ~contains(file_name, ".geojson")
-    disp('Wrong data type. Received: ', file_name)
+    disp(['Wrong data type. Received: ', file_name])
 else
     % Display its full path
     full_path = fullfile(path_name, file_name);
