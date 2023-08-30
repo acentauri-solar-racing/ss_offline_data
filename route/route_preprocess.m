@@ -67,6 +67,7 @@ route_table.inclinationSmoothed = inclination_smoothed;
 route_table.distance = lin_distance;
 route_table.cumDistance = cum_distance;
 route_table.maxSpeed = max_speed;
+route_table.theta = theta;
 
 %% Save csv file
 [save_file, save_path] = uiputfile('*.csv', 'Save Preprocessed Route As');
