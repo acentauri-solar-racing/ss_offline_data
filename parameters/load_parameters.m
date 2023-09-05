@@ -2,7 +2,8 @@
 % Created by: Tony Ngo, July 2023
 % Modified by: Giacomo Mastroddi, August 2023
 %
-% Update of parameters is shown in https://docs.google.com/spreadsheets/d/1VM5SzLikoJzH0g0JZaDFPCyxnKqB7-gmFB9RuCryzVE/edit
+% Update of parameters is shown in
+% https://docs.google.com/spreadsheets/d/1VM5SzLikoJzH0g0JZaDFPCyxnKqB7-gmFB9RuCryzVE/edit
 
 %% Longitudinal Vehicle Dynamics
 par.rho_a = 1.17;           % [kg/m^3] Air density 
