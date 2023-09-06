@@ -7,9 +7,9 @@
 
 %% Longitudinal Vehicle Dynamics
 par.rho_a = 1.17;           % [kg/m^3] Air density 
-par.Af = 0.8;               % [m^2] Frontal area 
-par.Cd = 0.09;              % [-] Aero drag coefficient
-par.Cr = 0.003;             % [-] Roll fric coefficient
+par.A_f = 0.8;              % [m^2] Frontal area 
+par.C_d = 0.09;             % [-] Aero drag coefficient
+par.C_r = 0.003;            % [-] Roll fric coefficient
 par.g = 9.81;               % [m/s^2] Gravitational acceleration
 par.r_w = 0.2785;           % [m] Wheel radius 
 par.N_f = 4;                % [-] Front bearings
