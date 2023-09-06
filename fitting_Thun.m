@@ -16,11 +16,13 @@ clear; close all; clc;
 %% Parameters
 rho_air = 1.18995; % kg/m^3
 g = 9.81; % m/s^2
-m = 250 + 80; % kg Rotational mass needs to be included!
+m = 250 + 80; % kg
+% MISSING Rotational mass needs to be included!
 
 %% Testing data
 v = [55; 65] / 3.6; % m/s
 P_mot = [500; 600]; % W
+% MISSING CONVERSION FROM ELECTRIC TO MECHANICAL POWER
 
 %% Matrix and vector for Linear Square
 b = P_mot ./ v;

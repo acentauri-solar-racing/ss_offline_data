@@ -18,7 +18,7 @@ else
 end
 
 %% Extract the relevant information
-[longitude, latitude, altitude, cum_distance, max_speed] = loadWaypointsModified(full_path);
+[longitude, latitude, altitude, cum_distance, max_speed] = load_way_points_modified(full_path);
 
 %% Smooth altitude
 window = 1000; % Can be seen as an equivalent distance in meters

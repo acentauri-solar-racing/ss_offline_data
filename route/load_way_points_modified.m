@@ -1,4 +1,4 @@
-function [lon, lat, alt, dist, maxspeed] = loadWaypointsModified(file)
+function [lon, lat, alt, dist, maxspeed] = load_way_points_modified(file)
 % Load geographical data, longitude, latitude and altitude from a geojson
 % file and compute the distance travelled from the this data. Additionally,
 % it extracts max speed information.
