@@ -1,6 +1,6 @@
 % Longitudinal Vehicle Dynamics at steady state in a flat terrain
 % F_trac = F_aero + F_roll
-% P_mot / v = 0.5 * rho_air * c_d * A_f * v^2 + m * g * c_r
+% P_mech / v = 0.5 * rho_air * c_d * A_f * v^2 + m * g * c_r
 %
 % In order to calculate the air density with
 % https://www.calctool.org/atmospheric-thermodynamics/air-density#what-is-the-density-of-air-considering-humidity
@@ -15,18 +15,17 @@ clear; close all; clc;
 
 %% Parameters
 rho_air = 1.18995; % kg/m^3
-g = 9.81; % m/s^2
-m = 250 + 80; % kg
-% MISSING Rotational mass needs to be included!
+par = get_car_param();
 
 %% Testing data
 v = [55; 65] / 3.6; % m/s
 P_mot = [500; 600]; % W
 % MISSING CONVERSION FROM ELECTRIC TO MECHANICAL POWER
+% P_mech(P_mot)
 
 %% Matrix and vector for Linear Square
-b = P_mot ./ v;
-A = [0.5 * rho_air * v, m * g * ones([2,1])];
+b = P_mot ./ v; % Should be P_mech
+A = [0.5 * rho_air * v, par.m_tot * par.g * ones([2,1])];
 
 %% Linear Square
 lin_results = lsqr(A,b);

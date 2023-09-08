@@ -13,17 +13,11 @@ par.Cd = 0.09;              % [-] Aerodynamic drag coefficient
 par.Cr = 0.003;             % [-] Roll friction coefficient
 par.g = 9.81;               % [m/s^2] Gravitational acceleration
 par.r_w = 0.2785;           % [m] Wheel radius
-% WE SHOULD REMOVE THESE FRICTIONS: ALL COMPONENTS INCLUDED IN CR
-% par.N_f = 4;                % [-] Front bearings
-% par.T_f = 0.0550;           % [Nm] Friction torque in one front bearing
-% par.N_r = 1;                % [-] Back bearings
-% par.T_r = 0.15;             % [Nm] Friction torque in one back bearing
 par.m_car = 188;            % [kg] Car mass
 par.m_driver = 80;          % [kg] Driver mass
-par.Theta_rot = 1.1343;     % [kgm^2] Moment of inertia rotating parts
+par.m_rot = load("tot_eq_rot_mass.mat").EqMassTot;   % [kg] Equivalent mass of rotating parts
 
-par.m_rot = par.Theta_rot / par.r_w^2; % [kg] Equivalent rotational mass
-par.m_tot = par.m_car + par.m_driver + par.m_rot; % [kg] Total mass
+par.m_tot = par.m_car + par.m_driver + par.m_rot;    % [kg] Total mass
 
 %% Electric Motor
 par.gamma_gb = 1;           % [-] Transmission gear box
