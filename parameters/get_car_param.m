@@ -25,8 +25,8 @@ function par = get_car_param()
     
     %% Electric Motor
     par.gamma_gb = 1;           % [-] Transmission gear box
-    par.e_mot = 0.97;           % [-] Motor efficiency
-    par.P_0 = 30;               % [W] Idle losses
+    par.e_mot = 0.98;           % [-] Motor efficiency
+    par.P_0 = 110;              % [W] Idle losses
     par.P_el_max = 5000;        % [W] Maximal electric power
     par.P_el_min = -5000;       % [W] Minimal electric power
     par.T_mot_max = 45;         % [Nm] Maximal Torque
