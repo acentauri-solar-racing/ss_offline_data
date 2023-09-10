@@ -33,13 +33,13 @@ function par = get_car_param()
     par.T_mot_min = -45;        % [Nm] Minimal Torque
     
     %% Photvoltaic Module
-    par.A_PV = 4;               % [-] Solar panel area
+    par.A_PV = 4;               % [m^2] Solar panel area
     par.eta_PV = 0.244;         % [-] Solar panel efficiency
-    par.lambda_PV = 0.0029;     % [1/K] Power loss coefficient
     par.eta_wire = 0.98;        % [-] Wiring efficiency
     par.eta_MPPT = 0.99;        % [-] MPPT efficiency
     par.eta_mismatch = 0.98;    % [-] Mismatch efficiency
-    par.theta_STC = 298.15;     % [K] Standard Condition Temperature
+    par.lambda_PV = 0.0029;     % [1/K] Power loss coefficient
+    par.theta_STC = 25+273.15;  % [K] Standard Condition Temperature
     par.G_0 = 1000;             % [W/m^2] Reference Global Irradiance
     par.nu = -3.47;             % [-] Model coefficient
     par.kappa = -0.0594;        % [s/m] Model coefficient
