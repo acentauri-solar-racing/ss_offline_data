@@ -6,6 +6,7 @@ import matplotlib.ticker as ticker
 import time
 import pandas as pd
 import numpy as np
+import os
 
 """ def conn_str() -> str:
     env = dotenv_values(".env")
@@ -34,7 +35,8 @@ try:
 except Error as e:
     print("Error while connecting to MySQL", e)
 
-# DO STUFF WITH DATABASE
+## DO STUFF WITH DATABASE
+# get data from database
 c = connection.cursor()
 c.execute("SELECT speed, timestamp FROM icu_heartbeat")
 icu_heartbeat = pd.DataFrame(c.fetchall(), columns=['speed', 'timestamp'])
@@ -45,6 +47,26 @@ bms_pack_soc = pd.DataFrame(c.fetchall(), columns=['soc', 'timestamp'])
 c.execute("SELECT battery_voltage, battery_current, timestamp FROM bms_pack_voltage_current")
 bms_pack_voltage_current = pd.DataFrame(c.fetchall(), columns=['voltage', 'current', 'timestamp'])
 
+## disconnect from Database
+if connection.is_connected():
+    cursor.close()
+    connection.close()
+    print("MySQL connection is closed")
+
+## Define the CSV file path + datafiles
+# Get the directory where the script is located
+path = os.path.dirname(os.path.abspath(__file__))
+
+file_names = ['data/icu_heartbeat.csv', 'data/bms_pack_voltage_current.csv']
+data_lists = [icu_heartbeat, bms_pack_voltage_current]
+
+# Write to CSV file
+for i, data in enumerate(data_lists):
+    csv_file_path = f"{path}/{file_names[i]}"
+    data_lists[i].to_csv(csv_file_path, index=False)
+    print(f'Data has been written to {csv_file_path}')
+
+# plot data
 ax = plt.axes()
 ax.plot(bms_pack_soc.loc[:,"timestamp"], bms_pack_soc.loc[:,"soc"], label = "soc")
 ax.plot(icu_heartbeat.loc[:,"timestamp"], 3.6 * icu_heartbeat.loc[:,"speed"] / 100, label = "speed")
@@ -59,9 +81,4 @@ ax.grid()
 plt.show()
 
 
-# disconnect from Database
-if connection.is_connected():
-        cursor.close()
-        connection.close()
-        print("MySQL connection is closed")
 

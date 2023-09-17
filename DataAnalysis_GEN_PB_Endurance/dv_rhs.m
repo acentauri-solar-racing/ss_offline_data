@@ -29,8 +29,11 @@ function dv = dv_rhs(par, states, controls, var)
     P_a = 0.5* par.rho_a * par.Cd * par.Af * (v_eff_front)^2 * v;                 % aerodynamic loss
     P_g = par.m_tot * par.g * sin(alpha) * v;                                     % inclination loss
     P_r = par.m_tot * par.g * par.Cr * cos(alpha) * v;                            % rolling friction loss
-    %P_b = (par.N_f * par.T_f / par.r_w + par.N_r * par.T_r / par.r_w) * v;        % bearing loss
-    P_b = 0;
+    P_b = (par.N_f * par.T_f / par.r_w + par.N_r * par.T_r / par.r_w) * v;        % bearing loss
+    %P_g = 0;
+    %P_r = 0;
+    %P_b = 0;
+
 
     % electric motor traction power
     P_mot_mec = P_mot_mec_sigmoid(P_mot_el, par.e_mot, par.P_0, 0.01);        % smooth and continuous derivable
