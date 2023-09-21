@@ -1,7 +1,7 @@
 % This function returns the car parameters in the par struct
 % Created by: Tony Ngo, July 2023
 % Modified by: Giacomo Mastroddi, August 2023
-% Last updated: Tony Ngo, 08.09.2023
+% Last updated: Flurin Solèr, 21.09.2023
 %
 % Update of parameters is shown in
 % https://docs.google.com/spreadsheets/d/1VM5SzLikoJzH0g0JZaDFPCyxnKqB7-gmFB9RuCryzVE/edit
