@@ -91,6 +91,8 @@ coastingEnd_dt = datetime('2023-09-03 18:58:20');
 [j_Start_speed(2), j_End_speed(2), j_Start_power(2), j_End_power(2)] = getIndicesCoasting(coastingEnd_dt, icu_heartbeat, bms_pack_voltage_current);
 
 %% plot
+figure 
+
 set(groot,'defaultLineLineWidth',2.0) % make thicker lines
 
 % subplot 1
