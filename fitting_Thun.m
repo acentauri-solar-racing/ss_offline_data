@@ -18,19 +18,18 @@ rho_air = 1.18995; % kg/m^3
 par = get_car_param();
 
 %% Testing data
-v = [55; 65] / 3.6; % m/s
+v = [55; 62] / 3.6; % m/s
 P_mot = [500; 600]; % W
-% MISSING CONVERSION FROM ELECTRIC TO MECHANICAL POWER
-% P_mech(P_mot)
+P_mech = elPower2mechPower_Willians(P_mot, par);
 
 %% Matrix and vector for Linear Square
-b = P_mot ./ v; % Should be P_mech
-A = [0.5 * rho_air * v, par.m_tot * par.g * ones([2,1])];
+b = P_mech ./ v;
+A = [0.5 * rho_air * v .* v * par.Af, par.m_tot * par.g * ones([2,1])];
 
 %% Linear Square
 lin_results = lsqr(A,b);
 
-fprintf('Aerodynamical friction c_d * A_f: %f\n', lin_results(1));
+fprintf('Aerodynamical friction c_d: %f\n', lin_results(1));
 fprintf('Rolling friction c_r: %f\n', lin_results(2));
 
 
