@@ -13,19 +13,14 @@ function par = get_car_param()
     %% Longitudinal Vehicle Dynamics
     par.rho_a = 1.17;           % [kg/m^3] Air density 
     par.Af = 0.85;              % [m^2] Frontal area 
-    par.Cd = 0.09;              % [-] Aerodynamic drag coefficient
-    par.Cr = 0.003;             % [-] Roll friction coefficient
+    par.Cd = 0.09;              % [-] Aerodynamic drag coefficient (0.09)
+    par.Cr = 0.003;             % [-] Roll friction coefficient (0.003)
     par.g = 9.81;               % [m/s^2] Gravitational acceleration
     par.r_w = 0.2785;           % [m] Wheel radius
-    % WE SHOULD REMOVE THESE FRICTIONS: ALL COMPONENTS INCLUDED IN CR
-    par.N_f = 4;                % [-] Front bearings
-    par.T_f = 0.0550;           % [Nm] Friction torque in one front bearing (0.0550)
-    par.N_r = 1;                % [-] Back bearings
-    par.T_r = 0.15;             % [Nm] Friction torque in one back bearing (0.15)
+    
     par.m_car = 188;            % [kg] Car mass
     par.m_driver = 80;          % [kg] Driver mass
     par.m_rot = load("tot_eq_rot_mass.mat").EqMassTot;   % [kg] Equivalent mass of rotating parts
-    
     par.m_tot = par.m_car + par.m_driver + par.m_rot;    % [kg] Total mass
     
     %% Electric Motor
