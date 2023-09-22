@@ -26,7 +26,7 @@ P_mot = [500; 600]; % W
 
 %% Matrix and vector for Linear Square
 b = P_mot ./ v;
-A = [0.5 * rho_air * v, m * g * ones([2,1])];
+A = [0.5 * rho_air * v.^2, m * g * ones([2,1])];
 
 %% Linear Square
 lin_results = lsqr(A,b);
