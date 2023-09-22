@@ -1,7 +1,7 @@
 % This function returns the car parameters in the par struct
 % Created by: Tony Ngo, July 2023
 % Modified by: Giacomo Mastroddi, August 2023
-% Last updated: Tony Ngo, 08.09.2023
+% Last updated: Flurin Solèr, 21.09.2023
 %
 % Update of parameters is shown in
 % https://docs.google.com/spreadsheets/d/1VM5SzLikoJzH0g0JZaDFPCyxnKqB7-gmFB9RuCryzVE/edit
@@ -13,14 +13,14 @@ function par = get_car_param()
     %% Longitudinal Vehicle Dynamics
     par.rho_a = 1.17;           % [kg/m^3] Air density 
     par.Af = 0.85;              % [m^2] Frontal area 
-    par.Cd = 0.09;              % [-] Aerodynamic drag coefficient
-    par.Cr = 0.003;             % [-] Roll friction coefficient
+    par.Cd = 0.09;              % [-] Aerodynamic drag coefficient (0.09)
+    par.Cr = 0.003;             % [-] Roll friction coefficient (0.003)
     par.g = 9.81;               % [m/s^2] Gravitational acceleration
     par.r_w = 0.2785;           % [m] Wheel radius
+    
     par.m_car = 188;            % [kg] Car mass
     par.m_driver = 80;          % [kg] Driver mass
     par.m_rot = load("tot_eq_rot_mass.mat").EqMassTot;   % [kg] Equivalent mass of rotating parts
-    
     par.m_tot = par.m_car + par.m_driver + par.m_rot;    % [kg] Total mass
     
     %% Electric Motor
