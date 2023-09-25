@@ -1,5 +1,5 @@
-% setup
-clc 
+%% setup
+%clc 
 clearvars %-except route
 
 %% start
