@@ -18,7 +18,7 @@ rho_air = 1.18995; % kg/m^3
 par = get_car_param();
 
 %% Testing data
-v = [55; 65] / 3.6; % m/s
+v = [55; 62] / 3.6; % m/s
 P_mot = [500; 600]; % W
 P_mech = elPower2mechPower_Willians(P_mot, par);
 

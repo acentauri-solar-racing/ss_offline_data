@@ -151,18 +151,18 @@ ax = gca;
 colororder(colors)
 legend('Location', 'best');
 
-%% validate steady state
-variables = [0 * pi/180, 0, 0, 0, 0];
-controls = [500, 0];
-
-dv = @(states) dv_rhs(par, states, controls, variables);
-[ss_out1, ~ ] = fsolve(dv, [iniCond.v_0, 0]);
-
-controls = [600, 0];
-dv = @(states) dv_rhs(par, states, controls, variables);
-[ss_out2, ~ ] = fsolve(dv, [iniCond.v_0, 0]);
-
-ss_out = [ss_out1(1), ss_out2(1)];
-clear ss_out1 ss_out2
-
-disp(ss_out * 3.6)
+% %% validate steady state
+% variables = [0 * pi/180, 0, 0, 0, 0];
+% controls = [500, 0];
+% 
+% dv = @(states) dv_rhs(par, states, controls, variables);
+% [ss_out1, ~ ] = fsolve(dv, [iniCond.v_0, 0]);
+% 
+% controls = [600, 0];
+% dv = @(states) dv_rhs(par, states, controls, variables);
+% [ss_out2, ~ ] = fsolve(dv, [iniCond.v_0, 0]);
+% 
+% ss_out = [ss_out1(1), ss_out2(1)];
+% clear ss_out1 ss_out2
+% 
+% disp(ss_out * 3.6)
