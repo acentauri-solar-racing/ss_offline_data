@@ -92,19 +92,25 @@ lineW = 2;
 sizeF = 13;
 
 % start figure
-f1 = figure;
+fig1 = figure(1);
+
 pdegplot(gm, "FaceAlpha", 0.8)
+delete(findobj(gca,'type','Text')); 
+delete(findobj(gca,'type','Quiver'));
+
 hold on;
 grid on;
+box off;
+axis off;
 
 % coordinate system
 plot3(x_xaxis, y_xaxis, z_xaxis, '-k', 'LineWidth', lineW);
 plot3(x_yaxis, y_yaxis, z_yaxis, '-k', 'LineWidth', lineW);
 plot3(x_zaxis, y_zaxis, z_zaxis, '-k', 'LineWidth', lineW);
-text( 1.1,0,0, 'North', 'FontSize', 1.2*sizeF)
-text(-1.1,0,0, 'South', 'FontSize', 1.2*sizeF)
-text(0,-1.1,0, 'East', 'FontSize', 1.2*sizeF)
-text(0, 1.1,0, 'West', 'FontSize', 1.2*sizeF)
+text( 1.2,0,0, 'North', 'FontSize', 1.2*sizeF, 'HorizontalAlignment','center')
+text(-1.2,0,0, 'South', 'FontSize', 1.2*sizeF, 'HorizontalAlignment','center')
+text(0,-1.2,0, 'East', 'FontSize', 1.2*sizeF, 'HorizontalAlignment','center')
+text(0, 1.2,0, 'West', 'FontSize', 1.2*sizeF, 'HorizontalAlignment','center')
 
 % azimuth angle
 % plot3(x_az(1:end-1),y_az(1:end-1),z_az(1:end-1), '-r', 'LineWidth', lineW)
@@ -122,7 +128,7 @@ plot3([0, 2*x_car(end)], [0, 2*y_car(end)], [0, 2 * z_car(end)], 'g','LineWidth'
 % plot3(x_elAz(1:end-1),y_elAz(1:end-1),z_elAz(1:end-1), '-y', 'LineWidth', lineW)
 % arrow([x_elAz(end-1), y_elAz(end-1), z_elAz(end-1)], [x_elAz(end), y_elAz(end), z_elAz(end)], 'Color', 'yellow', 'LineWidth', lineW);
 % %text(x_elAz(narc/2) + 0.1, y_elAz(narc/2) + 0.1, z_elAz(narc/2), sprintf('Elevation = %.1f°', El_avg), 'Color', 'y', 'HorizontalAlignment', 'center', 'FontSize', sizeF)
-plot3([0, 3*x_elAz(end)], [0, 3*y_elAz(end)], [0, 3*z_elAz(end)], 'y');
+% plot3([0, 3*x_elAz(end)], [0, 3*y_elAz(end)], [0, 3*z_elAz(end)], 'y');
 
 % panel angle
 plot3(x_Pan(1:end-1),y_Pan(1:end-1),z_Pan(1:end-1), '-b', 'LineWidth', lineW)
@@ -131,6 +137,8 @@ text(x_Pan(narc/2) + 0.1, y_Pan(narc/2) + 0.1, z_Pan(narc/2) + 0.2, sprintf('Pan
 plot3([0, 2*x_Pan(end)], [0, 2*y_Pan(end)], [0, 2 * z_Pan(end)], 'b', 'LineWidth', lineW);
 
 zlim([0,1])
+xlim([-1.4,1.4])
+ylim([-1.4,1.4])
 set(gca,'xtick',[])
 set(gca,'xticklabel',[])
 set(gca,'ytick',[])
@@ -140,12 +148,80 @@ set(gca,'zticklabel',[])
 
 view(3);
 
-a1 = gca;
-f2 = figure;
-a2 = copyobj(a1, f2);
+ax = gca;
+
+%% plot from top
+figure;
+
+pdegplot(gm, "FaceAlpha", 0.8)
+delete(findobj(gca,'type','Text')); 
+delete(findobj(gca,'type','Quiver'));
+
+hold on;
+grid on;
+box on;
+%axis off;
+
+plot3(x_xaxis, y_xaxis, z_xaxis, '-k', 'LineWidth', lineW);
+plot3(x_yaxis, y_yaxis, z_yaxis, '-k', 'LineWidth', lineW);
+plot3(x_zaxis, y_zaxis, z_zaxis, '-k', 'LineWidth', lineW);
+text( 1.2,0,0, 'North', 'FontSize', 1.2*sizeF, 'HorizontalAlignment','center')
+text(-1.2,0,0, 'South', 'FontSize', 1.2*sizeF, 'HorizontalAlignment','center')
+text(0,-1.2,0, 'East', 'FontSize', 1.2*sizeF, 'HorizontalAlignment','center')
+text(0, 1.2,0, 'West', 'FontSize', 1.2*sizeF, 'HorizontalAlignment','center')
+
+% car front angle
+plot3(x_car(1:end-1),y_car(1:end-1),z_car(1:end-1), '-g', 'LineWidth', lineW)
+arrow([x_car(end-1), y_car(end-1), z_car(end-1)], [x_car(end), y_car(end), z_car(end)], 'Color', 'green', 'LineWidth', lineW);
+plot3([0, 2*x_car(end)], [0, 2*y_car(end)], [0, 2 * z_car(end)], 'g','LineWidth', lineW);
+
+if Car_Front > 0
+    text(x_car(narc/2) + 0.1, y_car(narc/2) - 0.1, z_car(narc/2), sprintf('Car Front = %.1f°', abs(Car_Front)), 'Color', 'g', 'HorizontalAlignment', 'left', 'FontSize', sizeF)
+else
+    text(x_car(narc/2) + 0.1, y_car(narc/2) + 0.1, z_car(narc/2), sprintf('Car Front = %.1f°', abs(Car_Front)), 'Color', 'g', 'HorizontalAlignment', 'right', 'FontSize', sizeF)
+end
+
+xlim([-1.4,1.4])
+ylim([-1.4,1.4])
+%set(gca,'xtick',[])
+set(gca,'xticklabel',[])
+%set(gca,'ytick',[])
+set(gca,'yticklabel',[])
+%set(gca,'ztick',[])
+set(gca,'zticklabel',[])
+
 view(-90, 90)
 
-f3 = figure;
-a3 = copyobj(a1, f3);
+%% plot from front
+figure(3);
+
+pdegplot(gm, "FaceAlpha", 0.8)
+delete(findobj(gca,'type','Text')); 
+delete(findobj(gca,'type','Quiver'));
+
+hold on;
+grid on;
+box on;
+%axis on;
+
+plot3(x_xaxis, y_xaxis, z_xaxis, '-k', 'LineWidth', lineW);
+plot3(x_yaxis, y_yaxis, z_yaxis, '-k', 'LineWidth', lineW);
+plot3(x_zaxis, y_zaxis, z_zaxis, '-k', 'LineWidth', lineW);
+
+% panel angle
+plot3(x_Pan(1:end-1),y_Pan(1:end-1),z_Pan(1:end-1), '-b', 'LineWidth', lineW)
+arrow([x_Pan(end-1), y_Pan(end-1), z_Pan(end-1)], [x_Pan(end), y_Pan(end), z_Pan(end)], 'Color', 'blue', 'LineWidth', lineW);
+plot3([0, 2*x_Pan(end)], [0, 2*y_Pan(end)], [0, 2 * z_Pan(end)], 'b', 'LineWidth', lineW);
+text(x_Pan(narc/2), y_Pan(narc/2), z_Pan(narc/2) + 0.5, sprintf('Panel Angle = %.1f°', abs(Panel)), 'Color', 'b', 'HorizontalAlignment', 'center', 'VerticalAlignment', 'baseline', 'FontSize', sizeF)
+
+ylim([-0.6,0.6])
+zlim([0, 0.6])
+%set(gca,'xtick',[])
+set(gca,'xticklabel',[])
+%set(gca,'ytick',[])
+set(gca,'yticklabel',[])
+%set(gca,'ztick',[])
+set(gca,'zticklabel',[])
+
 view(180-Az_avg, 0)
 
