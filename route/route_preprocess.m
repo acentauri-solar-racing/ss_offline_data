@@ -2,15 +2,11 @@ clearvars;
 close all;
 
 %% Open the file browser dialog
-disp('Choose the .geojson route file')
-
-[file_name, path_name] = uigetfile('*');
+[file_name, path_name] = uigetfile('.geojson', 'Choose the geojson file');
 
 % Check if a file was selected
 if isequal(file_name, 0) || isequal(path_name, 0)
     disp('No file selected.');
-elseif ~contains(file_name, ".geojson")
-    disp(['Wrong data type. Received: ', file_name])
 else
     % Display its full path
     full_path = fullfile(path_name, file_name);
@@ -53,6 +49,9 @@ for idx = 1:cum_dist_length-1
     lin_distance(idx) = distance(latitude(idx), longitude(idx), latitude(idx+1), longitude(idx+1), wgs84); % Equivalent to: deg2rad(arclen) * earthRadius
 end
 
+%% Calculate the time travelled between current point and the next at max speed
+timeAtMaxSpeed = lin_distance ./ max_speed * 3.6; % Convert into m/s
+
 %% Create the table
 route_table = struct();
 
@@ -68,6 +67,7 @@ route_table.distance = lin_distance;
 route_table.cumDistance = cum_distance;
 route_table.maxSpeed = max_speed;
 route_table.theta = theta;
+route_table.timeAtMaxSpeed = timeAtMaxSpeed;
 
 %% Save csv file
 [save_file, save_path] = uiputfile('*.csv', 'Save Preprocessed Route As');
