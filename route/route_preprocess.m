@@ -51,6 +51,7 @@ end
 
 %% Calculate the time travelled between current point and the next at max speed
 timeAtMaxSpeed = lin_distance ./ max_speed * 3.6; % Convert into m/s
+cumTimeAtMaxSpeed = cumsum(timeAtMaxSpeed);
 
 %% Create the table
 route_table = struct();
@@ -68,6 +69,7 @@ route_table.cumDistance = cum_distance;
 route_table.maxSpeed = max_speed;
 route_table.theta = theta;
 route_table.timeAtMaxSpeed = timeAtMaxSpeed;
+route_table.cumTimeAtMaxSpeed = cumTimeAtMaxSpeed;
 
 %% Save csv file
 [save_file, save_path] = uiputfile('*.csv', 'Save Preprocessed Route As');
