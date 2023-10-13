@@ -4,6 +4,14 @@ clearvars;
 close all;
 
 %% define day and position of interests
+% The values in this section need to be changed
+%
+% The CarAngle is the angle between the north direction and the car 
+%   as seen in the plots, this value needs to be measured on site and then
+%   entered here.
+% From this, the script calculates the optimal angle of the Solar Panel
+% Lat, Lon and Alt need to be entered for the specific control stop
+
 UTC = datetime("now");  % date and time of day of interest
 
 Lat = 47.3667;  % [degrees]
@@ -42,7 +50,7 @@ min = objective(SunDir, PanelAz, paramsFound);
 
 
 %% plot panal angle
-plotPanelAngle(PanelAz, paramsFound);
+plotPanelAngle(PanelAz, paramsFound, [UTC_vec(1), UTC_vec(end)]);
 
 %% optimize panel angle
 function min = objective(SunDir, CarAngle, PanelEl)
