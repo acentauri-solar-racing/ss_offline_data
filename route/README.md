@@ -10,7 +10,7 @@ Steps:
     - Choose .geojson extension
     - Do not choose WayPoint format
 
-2. Second, the data have to be precrocess
+2. Second, the data have to be precrocessed
 - Run setup.m to ensure that all relevant functions are added to visible path
 - Run route_preprocess.m
     - Select the .geojson file
