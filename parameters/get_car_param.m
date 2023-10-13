@@ -27,8 +27,6 @@ function par = get_car_param()
     par.gamma_gb = 1;           % [-] Transmission gear box
     par.e_mot = 0.98;           % [-] Motor efficiency
     par.P_0 = 110;              % [W] Idle losses
-    par.P_el_max = 5000;        % [W] Maximal electric power
-    par.P_el_min = -5000;       % [W] Minimal electric power
     par.T_mot_max = 45;         % [Nm] Maximal Torque
     par.T_mot_min = -45;        % [Nm] Minimal Torque
     
@@ -43,6 +41,9 @@ function par = get_car_param()
     par.G_0 = 1000;             % [W/m^2] Reference Global Irradiance
     par.nu = -3.47;             % [-] Model coefficient
     par.kappa = -0.0594;        % [s/m] Model coefficient
+
+    par.theta_NOCT = 50;            % [°C] Nominal Operation Cell Temp
+    par.S = 80;                     % [mW/cm^2]
     
     par.eta_PV_tot = par.eta_PV * par.eta_wire * par.eta_MPPT * par.eta_mismatch; %[-] Total efficiency
     
@@ -56,12 +57,54 @@ function par = get_car_param()
     par.I_bat_min = -39.6;      % [A] Min current (regenerative)
     par.P_bat_max = 15120;      % [W] Max power
     par.P_bat_min = -4989.6;    % [W] Min power
-    par.SoC_max = 1;            % [-] Max SoC
-    par.SoC_min = 0.1;          % [-] Min safe SoC
     par.eta_coul = 1;           % [-] Coulumbic efficiency
     
     %% Route (regulations)
     par.v_max = 120/3.6;        % [m/s] abs max velocity
-    par.v_min = 60 / 3.6;       % [m/s] Min velocity
+    par.v_min = 50 / 3.6;       % [m/s] Min velocity
+
+    %% DP
+    par.s_step_DP = 10000;          % [m] do not change
+
+    %% MPC 
+    %% Discretization variables
+    par.s_step = 100;                % [m]
+    par.N = 500;                            % [-] Horizon length
+    par.N_t = 60*15*2.5;                    % [s] Horizon length in seconds
+    par.N_t = (par.N*par.s_step)/(50/3.6);  % [s] Horizon length in seconds
+
+
+    par.s_0 = 1231200;                    % initial position of the simulation   
+    % par.s_0 = get_initial_position();                    % initial position of the simulation   
+    par.s_tot =  par.s_0 + par.N*par.s_step;   % [m] simulated distance from initial position to final position
+    par.s_final = 3000000;          % [m] total distance (for parameters)
+
+    par.t_0 = 60*60*16+50*60;
+    %par.t_0 = get_machine_time_s();   % [s] machine time (REMEMBER TO ADD TIME IF YOU ARE IN THE NIGHT)
+
+    %% Model flag
+    par.battery_model_flag = 0;     % 0 for simple, else for extended model
+    
+    %% Slack variable
+    par.S1_weight = 1e-3;
+    par.S2_weight = 1e4;
+    par.slack_max = inf;
+    
+    %% Initialize constraints boundaries
+    par.P_el_max = 2000;        % [W] Maximal electric power
+    par.P_el_min = -2000;       % [W] Minimal electric power
+
+    par.P_brake_max = 0;        % [W] Max brake power (always 0)
+    par.P_brake_min = -5000;    % [W] Min brake power (no regen)
+
+    par.SoC_max = 1.0001;       % [-] Max SoC
+    par.SoC_min = 0.1;          % [-] Min safe SoC
+
+    par.v_driver_max = 90/3.6;  % [m/s] max velocity by driver
+
+
+    %% save format
+    par.format = 'yyyymmdd_HHMMSS';
+    par.filename = [datestr(datetime,par.format)+"_"+num2str(par.s_0)+"_"+num2str(par.s_tot)];
 
 end
