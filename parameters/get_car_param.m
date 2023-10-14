@@ -69,14 +69,14 @@ function par = get_car_param()
     %% MPC 
     %% Discretization variables
     par.s_step = 100;                % [m]
-    par.N = 300;                             % [-] Horizon length
-    par.N_t = 60*15*2.5;                    % [s] Horizon length in seconds
-    par.N_t = (par.N*par.s_step)/(50/3.6);  % [s] Horizon length in seconds
+    par.N = 300;                               % [-] Horizon length
+    par.N_t = 60*15*2.5;                       % [s] Horizon length in seconds
+    par.N_t = (par.N*par.s_step)/(50/3.6);     % [s] Horizon length in seconds
 
-    par.s_0 = 1200000;                    % initial position of the simulation   
-    % par.s_0 = get_initial_position();                    % initial position of the simulation   
+    par.s_0 = 1200000;                         % initial position of the simulation   
+    % par.s_0 = get_initial_position();        % initial position of the simulation   
     par.s_tot =  par.s_0 + par.N*par.s_step;   % [m] simulated distance from initial position to final position
-    par.s_final = 3000000;          % [m] total distance (for parameters)
+    par.s_final = 3000000;                     % [m] total distance (for parameters)
 
     %par.t_0 = 60*60*16+50*60;
     par.t_0 = get_machine_time_s();   % [s] machine time (REMEMBER TO ADD TIME IF YOU ARE IN THE NIGHT)
@@ -101,7 +101,8 @@ function par = get_car_param()
 
     par.v_driver_max = 90/3.6;  % [m/s] max velocity by driver
 
-
+    par.v_end_lb_percentage = 1;  % [-] set the final velocity constraint; these two values should be between [0.1;1]
+    par.v_end_ub_percentage = 1;    % [-] v_max*par.v_end_lb_percentage < v(end) < v_max*par.v_end_ub_percentage    
     %% save format
     par.format = 'yyyymmdd_HHMMSS';
     par.filename = [datestr(datetime,par.format)+"_"+num2str(par.s_0)+"_"+num2str(par.s_tot)];
