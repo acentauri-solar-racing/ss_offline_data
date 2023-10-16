@@ -49,9 +49,15 @@ for idx = 1:cum_dist_length-1
     lin_distance(idx) = distance(latitude(idx), longitude(idx), latitude(idx+1), longitude(idx+1), wgs84); % Equivalent to: deg2rad(arclen) * earthRadius
 end
 
-%% Calculate the time travelled between current point and the next at max speed
+%% Calculate the time travelled between current point and the next at max speed and at max for solar car
 timeAtMaxSpeed = lin_distance ./ max_speed * 3.6; % Convert into m/s
 cumTimeAtMaxSpeed = cumsum(timeAtMaxSpeed);
+
+max_velocity = 90;
+max_speed_solar_car = max_speed;
+max_speed_solar_car(max_speed_solar_car > max_velocity) = 90;
+timeAtMaxSpeedLim = lin_distance ./ max_speed_solar_car * 3.6; % Convert into m/s
+cumTimeAtMaxSpeedLim = cumsum(timeAtMaxSpeedLim);
 
 %% Create the table
 route_table = struct();
@@ -70,6 +76,7 @@ route_table.maxSpeed = max_speed;
 route_table.theta = theta;
 route_table.timeAtMaxSpeed = timeAtMaxSpeed;
 route_table.cumTimeAtMaxSpeed = cumTimeAtMaxSpeed;
+route_table.cumTimeAtMaxSpeedLim = cumTimeAtMaxSpeedLim;
 
 %% Save csv file
 [save_file, save_path] = uiputfile('*.csv', 'Save Preprocessed Route As');
