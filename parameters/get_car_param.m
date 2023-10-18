@@ -69,7 +69,7 @@ function par = get_car_param()
     %% MPC 
     %% Discretization variables
     par.s_step = 100;                % [m]
-    par.N = 300;                               % [-] Horizon length
+    par.N = 500;                               % [-] Horizon length
     par.N_t = 60*15*2.5;                       % [s] Horizon length in seconds
     par.N_t = (par.N*par.s_step)/(50/3.6);     % [s] Horizon length in seconds
 
