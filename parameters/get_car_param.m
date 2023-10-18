@@ -73,7 +73,7 @@ function par = get_car_param()
     par.N_t = 60*15*2.5;                       % [s] Horizon length in seconds
     par.N_t = (par.N*par.s_step)/(50/3.6);     % [s] Horizon length in seconds
 
-    par.s_0 = 1200000;                         % initial position of the simulation   
+    par.s_0 = 1000000;                         % initial position of the simulation   
     % par.s_0 = get_initial_position();        % initial position of the simulation   
     par.s_tot =  par.s_0 + par.N*par.s_step;   % [m] simulated distance from initial position to final position
     par.s_final = 3000000;                     % [m] total distance (for parameters)
