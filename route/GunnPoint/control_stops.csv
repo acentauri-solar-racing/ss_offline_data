@@ -1,4 +1,4 @@
-town,location,latitude,longitude
-Darwin,State Square Start Line,-12.4454302,130.907343
-Gunn Point,Marshalling,-12.458709,131.08546
-Adelaide, City of Adelaide Finish Line,-12.199169,131.035173
+town,location,latitude,longitude,cumDistance,dfIndex,csvIndex
+Darwin,State Square Start Line,-12.4454302,130.907343,154.089815048863,4,6
+Gunn Point,Marshalling,-12.458709,131.08546,24413.1651346272,269,271
+Adelaide, City of Adelaide Finish Line,-12.199169,131.035173,52085.328264018,357,359

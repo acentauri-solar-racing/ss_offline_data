@@ -59,6 +59,16 @@ max_speed_solar_car(max_speed_solar_car > max_velocity) = 90;
 timeAtMaxSpeedLim = lin_distance ./ max_speed_solar_car * 3.6; % Convert into m/s
 cumTimeAtMaxSpeedLim = cumsum(timeAtMaxSpeedLim);
 
+% %% Add a decimal point to int numbers in cum_distance
+% % Convert numbers to strings
+% str_vector = arrayfun(@(x) sprintf('%g', x), cum_distance, 'UniformOutput', false);
+% 
+% % Find indices of integers in the vector
+% int_indices = find(mod(cum_distance, 1) == 0);
+% 
+% % Add ".0" to integers in the string cell array
+% str_vector(int_indices) = strcat(str_vector(int_indices), '.0');
+
 %% Create the table
 route_table = struct();
 
@@ -71,7 +81,7 @@ route_table.inclination = inclination;
 route_table.inclinationSmooth = inclination_smooth;
 route_table.inclinationSmoothed = inclination_smoothed;
 route_table.distance = lin_distance;
-route_table.cumDistance = cum_distance;
+route_table.cumDistance = cum_distance; % Be careful that the first number will be treated as int
 route_table.maxSpeed = max_speed;
 route_table.theta = theta;
 route_table.timeAtMaxSpeed = timeAtMaxSpeed;
