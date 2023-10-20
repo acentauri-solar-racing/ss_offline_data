@@ -14,20 +14,19 @@ function par = get_car_param()
     par.t_0 = get_machine_time_s();   % [s] machine time (REMEMBER TO ADD TIME IF YOU ARE IN THE NIGHT)
     par.s_0 = get_init_cumDistance();                         % initial position of the simulation 
     par.s_0 = 1000000;                         % initial position of the simulation 
-    par.t_0 = get_machine_time_s();   % [s] machine time (REMEMBER TO ADD TIME IF YOU ARE IN THE NIGHT)
-    par.v_0 = get_init_v();
+    par.v_0 = get_init_v()/3.6;
     par.SoC_0 = get_init_soc();
       
     %% Longitudinal Vehicle Dynamics
     par.rho_a = 1.17;           % [kg/m^3] Air density 
     par.Af = 0.85;              % [m^2] Frontal area 
-    par.Cd = 0.09;              % [-] Aerodynamic drag coefficient (0.09)
-    par.Cr = 0.003;             % [-] Roll friction coefficient (0.003)
+    par.Cd = 0.2171;              % [-] Aerodynamic drag coefficient (0.09)
+    par.Cr = 0.00157;             % [-] Roll friction coefficient (0.003)
     par.g = 9.81;               % [m/s^2] Gravitational acceleration
     par.r_w = 0.2785;           % [m] Wheel radius
     
-    par.m_car = 188;            % [kg] Car mass
-    par.m_driver = 80;          % [kg] Driver mass
+    par.m_car = 182;           % [kg] Car mass
+    par.m_driver = 82;          % [kg] Driver mass
     par.m_rot = load("tot_eq_rot_mass.mat").EqMassTot;   % [kg] Equivalent mass of rotating parts
     par.m_tot = par.m_car + par.m_driver + par.m_rot;    % [kg] Total mass
     
