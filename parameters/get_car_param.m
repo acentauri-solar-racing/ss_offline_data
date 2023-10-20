@@ -9,6 +9,14 @@
 function par = get_car_param()
     % initialize parameters struct 
     par = struct;
+
+    %% Initial conditions
+    par.t_0 = get_machine_time_s();   % [s] machine time (REMEMBER TO ADD TIME IF YOU ARE IN THE NIGHT)
+    par.s_0 = get_init_cumDistance();                         % initial position of the simulation 
+    par.s_0 = 1000000;                         % initial position of the simulation 
+    par.t_0 = get_machine_time_s();   % [s] machine time (REMEMBER TO ADD TIME IF YOU ARE IN THE NIGHT)
+    par.v_0 = get_init_v();
+    par.SoC_0 = get_init_soc();
       
     %% Longitudinal Vehicle Dynamics
     par.rho_a = 1.17;           % [kg/m^3] Air density 
@@ -72,14 +80,12 @@ function par = get_car_param()
     par.N = 500;                               % [-] Horizon length
     par.N_t = 60*15*2.5;                       % [s] Horizon length in seconds
     par.N_t = (par.N*par.s_step)/(50/3.6);     % [s] Horizon length in seconds
-
-    par.s_0 = 1000000;                         % initial position of the simulation   
+ 
     % par.s_0 = get_initial_position();        % initial position of the simulation   
     par.s_tot =  par.s_0 + par.N*par.s_step;   % [m] simulated distance from initial position to final position
     par.s_final = 3000000;                     % [m] total distance (for parameters)
 
     %par.t_0 = 60*60*16+50*60;
-    par.t_0 = get_machine_time_s();   % [s] machine time (REMEMBER TO ADD TIME IF YOU ARE IN THE NIGHT)
 
     %% Model flag
     par.battery_model_flag = 0;     % 0 for simple, else for extended model
