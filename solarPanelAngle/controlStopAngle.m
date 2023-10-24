@@ -14,11 +14,11 @@ close all;
 
 UTC = datetime("now");  % date and time of day of interest
 
-Lat = 47.3667;  % [degrees]
-Lon = -8.55;    % [degrees]
-Alt = 0.4;      % [km]
+Lon = 133.8624973;  % [degrees]
+Lat = -23.736705;    % [degrees]
+Alt = 0.6;      % [km]
 
-CarAngle = 130;   % [degrees] given from parking position
+CarAngle = 180;   % [degrees] given from parking position
 
 %% cacluclate time vector
 UTC_vec = UTC:minutes(1):UTC+hours(0.5)-minutes(1);
