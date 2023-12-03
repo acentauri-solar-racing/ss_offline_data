@@ -7,4 +7,6 @@ In this repository you can find:
 - function to estimate the optimal solar deck angle
 - parameter fitting
 
-To add all functions in your current directory open setup.m and run it.
+To add all functions in your current directory
+1. open setup.m
+2. run it
