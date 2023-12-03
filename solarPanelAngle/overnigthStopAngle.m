@@ -14,11 +14,11 @@ close all;
 % timeDuration is the duration of interest, e.g. 6 hours into the night 
 %   after the control overnight stop started
 
-UTC = datetime("2023-10-23 17:30");  % date and time of day of interest
+UTC = datetime("2023-10-27 05:40");  % date and time of day of interest
 
-Lon = 133.8624973;  % [degrees]
-Lat = -23.736705;    % [degrees]
-Alt = 0.6;      % [km]
+Lon = 135.9278501;  % [degrees]
+Lat = -31.1198892;    % [degrees]
+Alt = 0.15;      % [km]
 
 timeSteps = 0.5;    % [hours]
 timeDuration = 2;   % [hours]

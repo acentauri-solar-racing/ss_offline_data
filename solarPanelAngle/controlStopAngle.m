@@ -12,13 +12,13 @@ close all;
 % From this, the script calculates the optimal angle of the Solar Panel
 % Lat, Lon and Alt need to be entered for the specific control stop
 
-UTC = datetime("now");  % date and time of day of interest
+UTC = datetime("2023-10-26 05:40");  % date and time of day of interest
 
-Lon = 133.8624973;  % [degrees]
-Lat = -23.736705;    % [degrees]
-Alt = 0.6;      % [km]
+Lon = 133.5625717;  % [degrees]
+Lat = -27.235769;    % [degrees]
+Alt = 0.33;      % [km]
 
-CarAngle = 180;   % [degrees] given from parking position
+CarAngle = 25;   % [degrees] given from parking position
 
 %% cacluclate time vector
 UTC_vec = UTC:minutes(1):UTC+hours(0.5)-minutes(1);
